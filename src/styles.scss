@@ -1,0 +1,146 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+    /* Tamaño del scroll en vertical */
+    height: 5px;
+    /* Tamaño del scroll en horizontal */
+    // display: none;
+    /* Ocultar scroll */
+}
+
+*::-webkit-scrollbar-thumb {
+    transition: ease all 0.5s;
+    background: rgb(111, 24, 131);
+    border-radius: 4px;
+}
+
+.btnSearch {
+    width: 300px;
+}
+
+.dth {
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
+
+.dth:hover {
+    transition: ease all 0.5s;
+    background-color: rgb(49, 156, 104);
+}
+
+html,
+body {
+    height: 100vh;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(79deg, rgba(2, 0, 36, 1) 0%, rgba(121, 9, 9, 1) 43%, rgba(47, 14, 83, 1) 100%);
+}
+
+body {
+    margin: 0;
+    // font-family: Roboto, "Helvetica Neue", sans-serif;
+    // font-family: 'Quicksand', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.notes {
+    font-size: 9pt;
+    color: gray;
+}
+
+.tableFixHead {
+    overflow: auto;
+    padding: 10px;
+    height: 60vh;
+    border: dashed 0.5px gray;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(2, 0, 36, 0.5);
+    background-color: #ffffff;
+}
+
+.prints {
+    background-color: rgb(255, 222, 178);
+    transition: ease all 0.5s;
+}
+
+.prints:hover {
+    background-color: rgb(223, 200, 170);
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.offcanvas-body {
+    background-color: #dadada;
+}
+
+
+/* Just common table stuff. Really. */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.updates,
+.deletes {
+    background-color: #34213F;
+}
+
+th,
+td {
+    padding: 8px 16px;
+    border: solid 1px rgb(208, 208, 208);
+}
+
+th {
+    background: rgb(55, 55, 55);
+    color: white;
+}
+
+.cont {
+    background-color: #19141ccc;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+@media screen and (max-width: 600px) {
+    .buton-step,
+    .buton-step_gen {
+        width: 60% !important;
+        font-size: 12pt;
+    }
+    #offcanvasExample {
+        width: 100% !important;
+    }
+    th,
+    td {
+        font-size: 9pt;
+    }
+    .dasform {
+        width: 100px !important;
+    }
+    .buton-step_ret {
+        width: 120px !important;
+        font-size: 12pt;
+    }
+}

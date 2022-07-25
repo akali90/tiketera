@@ -1,0 +1,191 @@
+* {
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+.titlecont {
+    border: dashed 3px whitesmoke;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.579);
+}
+
+.conta {
+    background-color: rgba(245, 245, 245, 0.744);
+}
+
+.step {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.dstep {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: dashed 1px rgb(218, 218, 218);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.border_tiket_A {
+    width: 20px;
+    height: 145px;
+    position: absolute;
+    margin-left: -270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.border_tiket_B {
+    width: 20px;
+    height: 145px;
+    position: absolute;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.inp {
+    text-align: center;
+}
+
+.box_side {
+    background-color: rgb(221, 221, 221);
+    width: 15px;
+    height: 20px;
+}
+
+.progress {
+    position: absolute;
+    background-color: rgba(142, 142, 142, 0.535);
+    height: 15px;
+    width: 60%;
+    margin-left: -30%;
+    left: 50%;
+    margin-top: 25px;
+    z-index: 1;
+}
+
+.tiket {
+    background: rgb(214, 214, 214);
+    background: linear-gradient(79deg, rgba(214, 214, 214, 1) 0%, rgba(226, 226, 226, 1) 43%, rgba(199, 199, 199, 1) 100%);
+    width: 265px;
+    height: 145px;
+    z-index: 4;
+}
+
+.dtiket {
+    border: dashed 5px gray;
+    width: 235px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buton-step {
+    font-size: 18pt;
+    background-color: purple;
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    transition: ease all 0.5s;
+}
+
+.buton-step:hover {
+    transition: ease all 0.5s;
+    font-size: 18pt;
+    background-color: rgb(18, 177, 124);
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.buton-step_ret {
+    font-size: 18pt;
+    background-color: rgb(80, 3, 80);
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    transition: ease all 0.5s;
+}
+
+.buton-step_ret:hover {
+    transition: ease all 0.5s;
+    font-size: 18pt;
+    background-color: rgb(18, 177, 124);
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.xtik {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -25px;
+    cursor: pointer;
+    transition: ease all 0.5s;
+    z-index: 50;
+}
+
+.xtik:hover {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: rgb(49, 156, 104) !important;
+    transform: scale(1.1);
+}
+
+.cant_boc {
+    background-color: purple;
+    height: 35px;
+    margin-top: -25px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14pt;
+    color: whitesmoke;
+}
+
+.buton-step_gen {
+    font-size: 18pt;
+    background-color: rgb(49, 156, 104);
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    transition: ease all 0.5s;
+}
+
+.buton-step_gen:hover {
+    font-size: 18pt;
+    background-color: rgb(20, 114, 100);
+    width: 25%;
+    padding: 15px;
+    color: white;
+    border: none;
+    transition: ease all 0.5s;
+}

@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/tiketera-prueba",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,220 @@
+<!-- <app-loginuser></app-loginuser> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Buscar tickets por rango de fecha: </h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex flex-column">
+                    <label for="finit">Fecha Inicial:</label>
+                    <input type="date" class="form-control" [(ngModel)]="finit" id="fecemi">
+                </div>
+                <div class="d-flex flex-column">
+                    <label for="finit">Fecha Final:</label>
+                    <input type="date" class="form-control" [(ngModel)]="fina">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="rangeDate( finit, fina )">Buscar Tickets</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start w-75" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <div class="d-flex align-items-center justify-content-between flex-wrap w-75">
+            <h2 class="offcanvas-title" id="offcanvasExampleLabel">
+                <img src="../../assets/historial.png" width="35" alt=""> Historial
+            </h2>
+            <div class="dsearch d-flex justify-content-center align-items-center">
+                <input type="text" id="searchainp" [disabled]="search" [(ngModel)]="_name_search" (keyup.enter)=" this.getTikets( filterSel, _name_search, tipfilterSel, filterSel, 'desc');" class="form-control p-1 rounded-start shadow-sm">
+                <button class="btnSearch btn btn-warning rounded-end" [disabled]="search" (click)="this.getTikets( filterSel, _name_search, tipfilterSel, filterSel, 'desc');">Buscar {{se}}</button>
+            </div>
+        </div>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ">
+        <div>
+            <div class="tableFixHead w-100 ">
+                <div><strong>Producción de Tickets:</strong>(Presiona ENTER en los campos editables para guardar.)</div>
+                <div>
+                    <button class="btn btn-danger" (click)="_show_action = !_show_action">acción</button>
+                </div>
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th class="p-2" *ngIf="_show_action" style="width: 25px !important;"> </th>
+                            <th class="p-2" *ngIf="_show_action" style="width: 25px !important;"> </th>
+                            <th class="p-2" *ngIf="_show_action" style="width: 25px !important;"> </th>
+                            <th class="dth p-2" title="Código de tiket" (click)="se = 'Cod. Tiket'; search = false; tipfilterSel ='x'; filterSel = 'cod_tiket'; this.getTikets('cod_user', '-', 'x', 'cod_tiket', 'desc'); setFocus('searchainp')" (dblclick)="this.getTikets('cod_user', '-', 'x', 'cod_tiket', 'asc');">
+                                Cod. Tiket </th>
+                            <th class="dth p-2" (click)="se = 'Usuario'; search = false; tipfilterSel ='y'; filterSel = 'st_user'; this.getTikets('cod_user', '-', 'y', 'st_user', 'desc'); setFocus('searchainp')" (dblclick)="this.getTikets('cod_user', '-', 'y', 'st_user', 'asc');">
+                                Usuario </th>
+                            <th class="dth p-2" title="Cantidad generada" (click)="se = 'Cant. Gen.'; search = false; tipfilterSel ='x'; filterSel = 'cant_tiket'; this.getTikets('cod_user', '-', 'x', 'cant_tiket', 'desc'); setFocus('searchainp')" (dblclick)="this.getTikets('cod_user', '-', 'x', 'cant_tiket', 'asc');">
+                                Cant. Gen. </th>
+                            <th class="dth p-2" title="Asunto por el cual fue generado el tiket" (click)="se = 'Asunto'; search = false; tipfilterSel ='x'; filterSel = 'asunto_tiket'; this.getTikets('cod_user', '-', 'x', 'asunto_tiket', 'desc'); setFocus('searchainp')" (dblclick)="this.getTikets('cod_user', '-', 'x', 'asunto_tiket', 'asc');">
+                                Asunto </th>
+                            <th class="dth p-2" title="Descripción por lo cual fue generado la producción de tiketes bajo este asunto" (click)="se = 'Descripción'; search = false; tipfilterSel ='x'; filterSel = 'descri_tiket'; this.getTikets('cod_user', '-', 'x', 'descri_tiket', 'desc'); setFocus('searchainp')"
+                                (dblclick)="this.getTikets('cod_user', '-', 'x', 'descri_tiket', 'asc');">
+                                Descripción
+                            </th>
+                            <th class="dth p-2" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Fecha de emisión" (click)="se = 'Fec. Emisión'; search = true; tipfilterSel ='x'; filterSel = 'fec_ing'; this.getTikets('cod_user', '-', 'x', 'fec_ing', 'desc'); setFocus('fecemi')"
+                                (dblclick)="this.getTikets('cod_user', '-', 'x', 'fec_ing', 'asc');">
+                                Fec. Emisión
+                            </th>
+                            <!-- <th class="p-2"><mat-icon class="text-secondary">delete_outline</mat-icon></th>
+                            <th class="p-2"><mat-icon class="text-secondary">edit</mat-icon></th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pr of xtiketArr">
+                            <!-- (click)="asign_price(pr.cost_prod, pr.descu, pr.nom_prod, pr.total)" -->
+                            <!-- <td class="getds" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                <mat-icon>preview</mat-icon>
+                            </td> -->
+                            <td *ngIf="_show_action" style="cursor:pointer; width: 25px !important;" [ngStyle]="{'background-color': '#FCBEBD'}" class="prints" (click)="delTik(pr.cod_tiket, pr.cod_user)">
+                                <img src="../../assets/delete.png" width="20">
+                            </td>
+                            <td *ngIf="_show_action" style="cursor:pointer; width: 25px !important;" [ngStyle]="{'background-color': '#BDE0FC'}" class="prints" (click)="putTicket(pr.cod_tiket, 'inpcantitcket-'+pr.cod_tiket+'-'+pr.cod_user, 'inpasunto-'+pr.cod_tiket+'-'+pr.cod_user,'textarea-'+pr.cod_tiket+'-'+pr.cod_user, pr.cod_user)">
+                                <img src="../../assets/save.png" width="20">
+                            </td>
+                            <td *ngIf="_show_action" style="cursor:pointer; width: 25px !important;" class="prints" (click)="prueba()">
+                                <img src="../../assets/print.png" width="20">
+                            </td>
+                            <td> {{pr.cod_tiket}} </td>
+                            <td [ngStyle]="{'background-color': '#A0DECD'}">
+                                {{pr.st_user}}
+                            </td>
+                            <td style="width: 90px;">
+                                <input value="{{pr.cant_tiket}}" id="inpcantitcket-{{pr.cod_tiket}}-{{pr.cod_user}}" class="dasform form-control p-1" (keyup.enter)="putTicket(pr.cod_tiket, 'inpcantitcket-'+pr.cod_tiket+'-'+pr.cod_user, 'inpasunto-'+pr.cod_tiket+'-'+pr.cod_user,'textarea-'+pr.cod_tiket+'-'+pr.cod_user, pr.cod_user)">
+                            </td>
+                            <td>
+                                <input value="{{pr.asunto_tiket}}" id="inpasunto-{{pr.cod_tiket}}-{{pr.cod_user}}" class="dasform form-control p-1" (keyup.enter)="putTicket(pr.cod_tiket, 'inpcantitcket-'+pr.cod_tiket+'-'+pr.cod_user, 'inpasunto-'+pr.cod_tiket+'-'+pr.cod_user,'textarea-'+pr.cod_tiket+'-'+pr.cod_user, pr.cod_user)">
+                            </td>
+                            <td>
+                                <input value="{{pr.descri_tiket}}" id="textarea-{{pr.cod_tiket}}-{{pr.cod_user}}" class="dasform form-control p-1" (keyup.enter)="putTicket(pr.cod_tiket, 'inpcantitcket-'+pr.cod_tiket+'-'+pr.cod_user, 'inpasunto-'+pr.cod_tiket+'-'+pr.cod_user,'textarea-'+pr.cod_tiket+'-'+pr.cod_user, pr.cod_user)">
+                            </td>
+                            <td> {{pr.fec_ing | date: 'dd-MM-yyyy'}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class=" titlecont container d-flex align-items-center shadow-lg justify-content-center flex-column flex-wrap text-light">
+        <div class="fs-6 d-flex align-items-center justify-content-center flex-wrap w-100">
+            <span class="d-flex align-items-center">
+            <img src="../../assets/tiket.png" width="45">
+            <strong class="text-warning">  Genera tu Ticket!</strong>
+          </span>
+            <span class="d-flex justify-content-start"> >> En 3 simples pasos</span>
+        </div>
+
+    </div>
+    <span class="notes mt-2 text-light d-flex justify-content-center fs-6">Creador: <strong class="text-warning"> {{_name_user | uppercase}} </strong></span>
+    <div class="tkt mt-4 d-flex justify-content-center align-items-center flex-wrap  shadow-lg ">
+        <div class="tiket d-flex justify-content-center align-items-center fs-1 animate__animated animate__bounce">
+            <div class="border_tiket_A">
+                <div class="box_side"></div>
+                <div class="box_side"></div>
+                <div class="box_side"></div>
+            </div>
+            <div class="dtiket d-flex flex-column">
+                <span class="notes mb-2">{{_asunto_user | uppercase}}</span>
+                <strong> {{_cod_asign}} - {{_contad_asign}}        </strong>
+                <span class="notes mt-2">{{_set_date}}</span>
+            </div>
+            <div class="border_tiket_B">
+                <div class="box_side"></div>
+                <div class="box_side"></div>
+                <div class="box_side"></div>
+            </div>
+        </div>
+        <div class="xtik bg-danger text-light rounded-pill p-2 shadow-sm" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <strong><img src="../../assets/tiket.png" width="45"> Etiquetas ( {{cant_tik_gen}} )</strong>
+        </div>
+    </div>
+    <div class="conta  p-2 rounded-2 shadow-lg mt-4 d-flex flex-column">
+        <div class="head-step mt-2 d-flex justify-content-around">
+            <div class="progress"></div>
+            <div class="step" [ngStyle]="{'background-color': _step_color_bgA, 'transition': 'ease all 0.6s', 'transform': _scaleA, 'color': _color_step_textA}" (click)="nextStep(1); ">
+                <div class="dstep">
+                    <span class="fs-2">
+                      <strong>1</strong>
+                    </span>
+                </div>
+            </div>
+            <div class="step" [ngStyle]="{'background-color': _step_color_bgB, 'transition': 'ease all 0.6s', 'transform': _scaleB, 'color': _color_step_textB}" (click)="nextStep(2)">
+                <div class="dstep">
+                    <span class="fs-2">
+                      <strong>2</strong>
+                    </span>
+                </div>
+            </div>
+            <div class="step" [ngStyle]="{'background-color': _step_color_bgC, 'transition': 'ease all 0.6s', 'transform': _scaleC, 'color': _color_step_textC}" (click)="nextStep(3)">
+                <div class="dstep">
+                    <span class="fs-2">
+                      <strong>3</strong>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="conten-step mt-4 d-flex justify-content-center align-items-center flex-column">
+            <section class="section_stepsd-flex justify-content-center align-items-center w-100 " *ngIf="_show_asunto">
+                <div class="entry-data d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="asunto_user"> <h1> Asunto: </h1> </label>
+                    <input class="inp form-control p-2 fs-4 text-secondary w-50" #asunto_user autofocus [(ngModel)]="_asunto_user" maxlength="13" (keyup.enter)="nextStep(2)" (keyup)="_cod_asign = _asunto_user.slice(0,2).toUpperCase(); _name_tiket = _asunto_user; dataPersist('asunto_user_tiket', _asunto_user)"
+                        id="asunto_user" placeholder="Comida....." type="text">
+                </div>
+                <div class="m-2 w-100 d-flex justify-content-center">
+                    <button class="buton-step shadow-lg d-flex justify-content-center align-items-center" (click)="nextStep(2)">
+                 <strong> Siguiente </strong>
+                 <img src="../../assets/row-right.png" width="35" >
+              </button>
+                </div>
+            </section>
+            <section class="section_stepsd-flex justify-content-center align-items-center flex-wrap w-100 animate__animated animate__fadeInUp " *ngIf="_show_cant">
+                <div class="entry-data d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="cant_tiket"> <h1> Cantidad: </h1> </label>
+                    <input class="inp form-control p-2 fs-4 text-secondary w-25" #cant_tiket [(ngModel)]="_number_tikets" maxlength="4" (keyup.enter)="nextStep(3)" (keyup)="_contad_asign = _number_tikets.padStart(5, '0'); dataPersist('_number_tikets', _number_tikets)" id="cant_tiket"
+                        placeholder="...0" type="text">
+                </div>
+                <div class="m-2 w-100 d-flex justify-content-center">
+                    <button class="buton-step_ret shadow-lg d-flex justify-content-center align-items-center rounded-start" (click)="nextStep(2)">
+                      <img src="../../assets/row_left.png" width="35">
+                      <strong> Paso anterior </strong>
+                    </button>
+                    <button class="buton-step shadow-lg d-flex justify-content-center align-items-center rounded-end" (click)="nextStep(3)">
+                    <strong> Siguiente </strong>
+                      <img src="../../assets/row-right.png" width="35">
+                    </button>
+                </div>
+            </section>
+            <section class="section_stepsd-flex justify-content-center align-items-center w-100 animate__animated animate__fadeInUp " *ngIf="_show_gen">
+                <div class="entry-data d-flex justify-content-center align-items-center flex-column w-100">
+                    <label for="user_tiket"> <h1> Nombre de usuario: </h1> </label>
+                    <input class="inp form-control p-2 fs-4 text-secondary w-25" #user_tiket [(ngModel)]="_name_user" maxlength="15" (keyup.enter)="generateCodec()" (keyup)="_creador = _name_user; dataPersist('name_user_tiket', _name_user)" id="user_tiket" placeholder="Mart..."
+                        type="text">
+                </div>
+                <div class="m-2 w-100 d-flex justify-content-center">
+                    <button class="buton-step_ret shadow-lg d-flex justify-content-center align-items-center rounded-start" (click)="nextStep(2)">
+                    <img src="../../assets/row_left.png" width="35">
+                    <strong> Paso anterior </strong>
+                  </button>
+                    <button class="buton-step_gen shadow-lg d-flex justify-content-center align-items-center rounded-end" (click)="generateCodec()">
+                  <strong> Generar </strong>
+                    <img src="../../assets/tiket.png" width="35">
+                  </button>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
